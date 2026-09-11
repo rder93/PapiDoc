@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
  * - Dosis mínima: peso_kg × 10 mg/kg
  * - Dosis máxima: peso_kg × 15 mg/kg
  * - Dosis máxima diaria: peso_kg × 60 mg/kg (no superar 4 dosis en 24h)
- * - 1 mL = 20 gotas (estándar gotero pediátrico)
+ * - 1 mL = 30 gotas (estándar gotero pediátrico)
  *
  * Diseñado para ser reutilizable con otros medicamentos cambiando los factores.
  */
