@@ -16,6 +16,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Card
@@ -172,8 +173,32 @@ fun DosageCalculatorScreen(
 
             // --- Card de resultado ---
             AnimatedVisibility(visible = uiState.result != null) {
-                uiState.result?.let { result ->
-                    DosageResultCard(result = result)
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    uiState.result?.let { result ->
+                        DosageResultCard(result = result)
+                    }
+
+                    PapiDocButton(
+                        text = "Registrar dosis administrada",
+                        onClick = viewModel::registerDose,
+                        enabled = !uiState.doseRegistered
+                    )
+
+                    AnimatedVisibility(visible = uiState.doseRegistered) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.CheckCircle,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text(
+                                text = "Dosis registrada en el historial",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                    }
                 }
             }
 

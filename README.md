@@ -12,6 +12,7 @@ Aplicación Android orientada a **padres y madres con bebés** que necesitan cal
 |---|---|
 | Calculadora de Paracetamol (gotas y mL) | Disponible |
 | Disclaimer médico obligatorio | Disponible |
+| Historial de dosis administradas | Disponible |
 | Registro de Temperatura | Próximamente |
 | Control de Vacunas | Próximamente |
 | Otros Medicamentos (ibuprofeno, etc.) | Próximamente |
@@ -26,6 +27,14 @@ Aplicación Android orientada a **padres y madres con bebés** que necesitan cal
   - Máximo diario en mg y gotas
 - Validación de peso con advertencias fuera de rango
 - Recordatorio permanente de consultar al médico
+
+### Historial de dosis
+
+- Cada vez que se calcula una dosis, queda registrada automáticamente
+- Lista cronológica con fecha amigable ("Hoy", "Ayer" o fecha completa)
+- Cada registro muestra: hora, mL, gotas, mg, peso y concentración usada
+- Permite eliminar registros individuales
+- Almacenado localmente en base de datos Room (sin conexión a internet)
 
 ### Lógica de cálculo
 
@@ -48,7 +57,7 @@ Aplicación Android orientada a **padres y madres con bebés** que necesitan cal
 | Arquitectura | MVVM + Clean Architecture |
 | Inyección de dependencias | Koin |
 | Navegación | Navigation Compose |
-| Persistencia | DataStore Preferences |
+| Persistencia | DataStore Preferences + Room Database |
 | Testing | JUnit 4 + MockK |
 
 ---
@@ -61,7 +70,8 @@ com.papidoc/
 │   ├── navigation/          # NavGraph, rutas y destinos
 │   └── ui/theme/            # Color, Typography, Theme (M3 light + dark)
 ├── data/
-│   └── repository/          # Implementaciones (DataStore)
+│   ├── local/               # Room Database, DAOs y entidades
+│   └── repository/          # Implementaciones (DataStore + Room)
 ├── di/                      # Módulo Koin
 ├── domain/
 │   ├── model/               # DosageResult, MedicationConcentration, DosageValidation
@@ -71,6 +81,7 @@ com.papidoc/
     ├── components/          # Composables reutilizables (PapiDocButton)
     ├── disclaimer/          # Pantalla de aviso legal
     ├── dosage/              # Calculadora de dosis
+    ├── history/             # Historial de dosis administradas
     └── home/                # Pantalla principal con cards de features
 ```
 

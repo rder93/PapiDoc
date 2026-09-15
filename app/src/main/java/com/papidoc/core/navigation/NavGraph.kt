@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import com.papidoc.presentation.disclaimer.DisclaimerScreen
 import com.papidoc.presentation.disclaimer.DisclaimerViewModel
 import com.papidoc.presentation.dosage.DosageCalculatorScreen
+import com.papidoc.presentation.history.DoseHistoryScreen
 import com.papidoc.presentation.home.HomeScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -41,6 +42,9 @@ fun PapiDocNavGraph(navController: NavHostController) {
                 },
                 onNavigateToDisclaimer = {
                     navController.navigate(Routes.DISCLAIMER_READ_ONLY)
+                },
+                onNavigateToDoseHistory = {
+                    navController.navigate(Routes.DOSE_HISTORY)
                 }
             )
         }
@@ -55,6 +59,12 @@ fun PapiDocNavGraph(navController: NavHostController) {
 
         composable(Routes.DOSAGE_CALCULATOR) {
             DosageCalculatorScreen(
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(Routes.DOSE_HISTORY) {
+            DoseHistoryScreen(
                 onNavigateBack = { navController.popBackStack() }
             )
         }

@@ -10,6 +10,7 @@ object Routes {
     const val HOME = "home"
     const val DOSAGE_CALCULATOR = "dosage_calculator"
     const val DISCLAIMER_READ_ONLY = "disclaimer_read_only"
+    const val DOSE_HISTORY = "dose_history"
     // Futuras rutas:
     // const val TEMPERATURE_LOG = "temperature_log"
     // const val VACCINE_TRACKER = "vaccine_tracker"

@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Calculate
+import androidx.compose.material.icons.filled.History
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.MedicalServices
 import androidx.compose.material.icons.filled.Thermostat
@@ -62,6 +63,13 @@ private val features = listOf(
         route = "dosage_calculator"
     ),
     HomeFeature(
+        title = "Historial de dosis",
+        description = "Consulta y administra las dosis registradas",
+        icon = Icons.Default.History,
+        enabled = true,
+        route = "dose_history"
+    ),
+    HomeFeature(
         title = "Registro de Temperatura",
         description = "Lleva un control de la temperatura de tu bebé",
         icon = Icons.Default.Thermostat,
@@ -85,7 +93,8 @@ private val features = listOf(
 @Composable
 fun HomeScreen(
     onNavigateToDosageCalculator: () -> Unit,
-    onNavigateToDisclaimer: () -> Unit = {}
+    onNavigateToDisclaimer: () -> Unit = {},
+    onNavigateToDoseHistory: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -135,6 +144,7 @@ fun HomeScreen(
                         if (feature.enabled) {
                             when (feature.route) {
                                 "dosage_calculator" -> onNavigateToDosageCalculator()
+                                "dose_history" -> onNavigateToDoseHistory()
                             }
                         }
                     }
